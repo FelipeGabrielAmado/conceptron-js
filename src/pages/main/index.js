@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../../services/api";
+import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -76,7 +77,7 @@ export default class Main extends Component {
                 <div className="project-title"> {project.tx_nome} </div>
               </article>
               <div className="button-line">
-               <a href="/alterar"> <button>Editar</button> </a>
+              <Link to={`/alterar/${project.id}`}> <button>Editar</button> </Link>
                 <button>Exportar</button>
               </div>
               <div className="button-delete">

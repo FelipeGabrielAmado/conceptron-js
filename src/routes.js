@@ -12,7 +12,7 @@ const Routes = () => (
         <Header />
             <Switch>
                 <Route exact path="/" component={Main} />
-                <Route exact path="/alterar" component={AlterProject} />
+                <Route exact path="/alterar/:id" component={AlterProject} />
             </Switch>
     </BrowserRouter>
 );
