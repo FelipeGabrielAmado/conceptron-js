@@ -10,7 +10,7 @@ export default class AlterProject extends Component {
   state = {
     projects: [],
     tx_nome: "",
-    nr_comadas: "",
+    nr_camadas: "",
     nr_entrada: "",
     nr_escondida: "",
     nr_saida: "",
