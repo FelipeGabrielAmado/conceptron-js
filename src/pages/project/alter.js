@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../../services/api";
+import NeuralNetwork from "../../components/NeuralNetwork";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
@@ -41,15 +42,28 @@ export default class AlterProject extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { id } = this.props.match.params;
-    const { nr_entrada, nr_escondida, nr_saida, nr_funcaoativacao, fl_softmax } = this.state;
+    const {
+      nr_entrada,
+      nr_escondida,
+      nr_saida,
+      nr_funcaoativacao,
+      fl_softmax,
+    } = this.state;
 
     const response = api
-      .put(`/projetos/${id}`, { nr_entrada, nr_escondida, nr_saida, nr_funcaoativacao, fl_softmax })
+      .put(`/projetos/${id}`, {
+        nr_entrada,
+        nr_escondida,
+        nr_saida,
+        nr_funcaoativacao,
+        fl_softmax,
+      })
       .then((res) => {
         console.log(res);
         console.log(res.data);
         alert(res.data);
       });
+      window.location.reload();
   };
 
   async componentDidMount() {
@@ -65,74 +79,86 @@ export default class AlterProject extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="menu-form">
-        {projects.map(project => (
-          <div className="alter-menu">
-            <div className="menu-item">
-              <div className="x-icon">X</div>
-              Neurônios de entrada
-              <input
-                className="menu-input"
-                type="text"
-                name="numeroentradas"
-                onChange={this.handlenr_entrada}
-                placeholder={project.nr_entrada}
-              />
-            </div>
-            <div className="menu-item">
-              <div className="x-icon">
-                <FontAwesomeIcon icon={faCodeBranch} />
+          {projects.map((project) => (
+            <div className="alter-menu">
+              <div className="menu-item">
+                <div className="x-icon">X</div>
+                Neurônios de entrada
+                <input
+                  className="menu-input"
+                  type="text"
+                  name="numeroentradas"
+                  onChange={this.handlenr_entrada}
+                  placeholder={project.nr_entrada}
+                />
               </div>
-              Neurônios escondidos
-              <input
-                className="menu-input"
-                type="text"
-                name="numeroescondidas"
-                onChange={this.handlenr_escondida}
-                placeholder={project.nr_escondida}
-              />
-            </div>
+              <div className="menu-item">
+                <div className="x-icon">
+                  <FontAwesomeIcon icon={faCodeBranch} />
+                </div>
+                Neurônios escondidos
+                <input
+                  className="menu-input"
+                  type="text"
+                  name="numeroescondidas"
+                  onChange={this.handlenr_escondida}
+                  placeholder={project.nr_escondida}
+                />
+              </div>
 
-            <div className="menu-item">
-              <div className="x-icon">X</div>
-              Neurônios de saída
-              <input
-                className="menu-input"
-                type="text"
-                name="numerosaida"
-                onChange={this.handlenr_saida}
-                placeholder={project.nr_saida}
-              />
-            </div>
-            <div className="menu-item">
-              <div className="connect-icon">
-                <FontAwesomeIcon icon={faArrowRight} />
+              <div className="menu-item">
+                <div className="x-icon">X</div>
+                Neurônios de saída
+                <input
+                  className="menu-input"
+                  type="text"
+                  name="numerosaida"
+                  onChange={this.handlenr_saida}
+                  placeholder={project.nr_saida}
+                />
               </div>
-              Conectar
+              <div className="menu-item">
+                <div className="connect-icon">
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </div>
+                Conectar
+              </div>
+              <div className="menu-divider"> | </div>
+              <div className="selector">
+                <select
+                  name="activation"
+                  id="activation"
+                  onChange={this.handlenr_funcaoativacao}
+                >
+                  <option value="" disabled selected hidden>
+                    Função de ativação
+                  </option>
+                  <option value="1">Linear</option>
+                  <option value="2">Sigmoide</option>
+                  <option value="3">ReLu</option>
+                  <option value="4">Tangente Hiperbólica</option>
+                </select>
+              </div>
+              <div className="checkbox">
+                <input
+                  type="checkbox"
+                  id="softmax"
+                  name="softmax"
+                  onChange={this.handlefl_softmax}
+                />
+                <label className="softmax-checkbox" for="softmax">
+                  SoftMax
+                </label>
+              </div>
+              <button className="save-button" type="submit">
+                Salvar
+              </button>
             </div>
-            <div className="menu-divider"> | </div>
-            <div className="selector">
-              <select name="activation" id="activation" onChange={this.handlenr_funcaoativacao}>
-                <option value="" disabled selected hidden>
-                  Função de ativação
-                </option>
-                <option value="1">Linear</option>
-                <option value="2">Sigmoide</option>
-                <option value="3">ReLu</option>
-                <option value="4">Tangente Hiperbólica</option>
-              </select>
-            </div>
-            <div className="checkbox">
-              <input type="checkbox" id="softmax" name="softmax" onChange={this.handlefl_softmax} />
-              <label className="softmax-checkbox" for="softmax">
-                SoftMax
-              </label>
-            </div>
-            <button className="save-button" type="submit">
-              Salvar
-            </button>
-          </div>
-        ))}
+          ))}
         </form>
+        {projects.map((project) => (
+          <NeuralNetwork networkData={project} />
+        ))}
       </div>
     );
   }
