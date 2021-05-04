@@ -100,3 +100,13 @@ input.menu-input {
     margin-top: -20px;
     transform: scale(.82);
 }
+
+button.show-button {
+    background: white;
+    border: 1px solid transparent;
+    color: #1b2730;
+    margin-left: 50px;
+    transition: .5s;
+}
+
+a{text-decoration: none;}

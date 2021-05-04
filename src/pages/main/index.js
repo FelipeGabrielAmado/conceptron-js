@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import api from "../../services/api";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -77,8 +77,14 @@ export default class Main extends Component {
                 <div className="project-title"> {project.tx_nome} </div>
               </article>
               <div className="button-line">
-              <Link to={`/alterar/${project.id}`}> <button>Editar</button> </Link>
-                <button>Exportar</button>
+                <Link to={`/alterar/${project.id}`}>
+                  {" "}
+                  <button>Editar</button>{" "}
+                </Link>
+                <Link to={`/visualizar/${project.id}`}>
+                  {" "}
+                  <button>Visualizar</button>{" "}
+                </Link>
               </div>
               <div className="button-delete">
                 <button onClick={() => this.removeProject(project.id)}>
@@ -88,7 +94,9 @@ export default class Main extends Component {
             </div>
           ))}
         </div>
-        <div className={!this.state.isOpen ? "create-modal" : "create-modal-show"} >
+        <div
+          className={!this.state.isOpen ? "create-modal" : "create-modal-show"}
+        >
           <div className="close-icon">
             <a onClick={() => this.closeModal()}>
               <FontAwesomeIcon icon={faTimes} />
@@ -99,7 +107,13 @@ export default class Main extends Component {
           <form onSubmit={this.handleSubmit}>
             <label>
               Nome do projeto:
-              <input type="text" name="categoryName" onChange={this.handleChangeName} placeholder="Nome do projeto" required/>
+              <input
+                type="text"
+                name="categoryName"
+                onChange={this.handleChangeName}
+                placeholder="Nome do projeto"
+                required
+              />
             </label>
             <button type="submit" className="button-submit">
               Criar

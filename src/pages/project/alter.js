@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import api from "../../services/api";
 import NeuralNetwork from "../../components/NeuralNetwork";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
+import { faCodeBranch } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.css";
 
@@ -63,7 +64,7 @@ export default class AlterProject extends Component {
         console.log(res.data);
         alert(res.data);
       });
-      window.location.reload();
+    window.location.reload();
   };
 
   async componentDidMount() {
@@ -117,12 +118,6 @@ export default class AlterProject extends Component {
                   placeholder={project.nr_saida}
                 />
               </div>
-              <div className="menu-item">
-                <div className="connect-icon">
-                  <FontAwesomeIcon icon={faArrowRight} />
-                </div>
-                Conectar
-              </div>
               <div className="menu-divider"> | </div>
               <div className="selector">
                 <select
@@ -130,9 +125,7 @@ export default class AlterProject extends Component {
                   id="activation"
                   onChange={this.handlenr_funcaoativacao}
                 >
-                  <option value="" disabled selected hidden>
-                    Função de ativação
-                  </option>
+                  <option value="" disabled selected hidden> Função de ativação </option>
                   <option value="1">Linear</option>
                   <option value="2">Sigmoide</option>
                   <option value="3">ReLu</option>
@@ -153,9 +146,14 @@ export default class AlterProject extends Component {
               <button className="save-button" type="submit">
                 Salvar
               </button>
+              <Link to={`/visualizar/${project.id}`}>
+                {" "}
+                <button className="show-button">Visualizar</button>{" "}
+              </Link>
             </div>
           ))}
         </form>
+
         {projects.map((project) => (
           <NeuralNetwork networkData={project} />
         ))}
