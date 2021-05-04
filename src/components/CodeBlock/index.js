@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import "./styles.css";
 
 export default class CodeBlock extends Component {
-
   render() {
     const { codeData } = this.props;
-    let  ativacao  = null;
+    let ativacao = null;
 
     if (codeData.nr_funcaoativacao == 1) {
-        ativacao = "self.linear = nn.Linear()";
-      }
+      ativacao = "self.linear = nn.Linear()";
+    }
     if (codeData.nr_funcaoativacao == 2) {
       ativacao = "self.sigmoid = nn.Sigmoid()";
     }
@@ -59,8 +58,8 @@ export default class CodeBlock extends Component {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <p className="yellow">self</p>.hidden ={" "}
           <p className="yellow">&nbsp;nn</p>.Linear(
-          <p className="orange">" + str({codeData.nr_entrada}) + "</p>,{" "}
-          <p className="orange">&nbsp;" + str({codeData.nr_escondida}) +</p>
+          <p className="yellow"> {codeData.nr_entrada} </p> ,{" "}
+          <p className="yellow"> &nbsp;{codeData.nr_escondida} </p>)
         </div>
 
         <div className="line">
@@ -72,8 +71,7 @@ export default class CodeBlock extends Component {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <p className="yellow">self</p>.output ={" "}
           <p className="yellow">&nbsp;nn</p>.Linear(
-          <p className="orange">" + str({codeData.nr_escondida}) + "</p>,{" "}
-          <p className="orange">&nbsp;" + str({codeData.nr_saida}) +</p>
+          <p className="yellow">{codeData.nr_escondida}</p>, &nbsp; <p className="yellow">{codeData.nr_saida})</p>
         </div>
         <br />
 
