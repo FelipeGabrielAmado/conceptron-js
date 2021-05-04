@@ -8,9 +8,7 @@ export default class NeuralNetwork extends Component {
     while (root.firstChild) {
       root.removeChild(root.firstChild);
     }
-
-    console.log(this.props.networkData.nr_escondida);
-
+    
     new NNVisualizer(root, {
       width: 800,
       height: 500,

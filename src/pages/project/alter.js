@@ -70,7 +70,6 @@ export default class AlterProject extends Component {
   async componentDidMount() {
     const { id } = this.props.match.params;
     const response = await api.get(`/projetos/${id}`);
-    console.log(response);
     this.setState({ projects: response.data });
   }
 
