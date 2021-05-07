@@ -83,7 +83,7 @@ export default class Main extends Component {
                 </Link>
                 <Link to={`/visualizar/${project.id}`}>
                   {" "}
-                  <button>Visualizar</button>{" "}
+                  <button>Script</button>{" "}
                 </Link>
               </div>
               <div className="button-delete">

@@ -147,7 +147,7 @@ export default class AlterProject extends Component {
               </button>
               <Link to={`/visualizar/${project.id}`}>
                 {" "}
-                <button className="show-button">Visualizar</button>{" "}
+                <button className="show-button">Script</button>{" "}
               </Link>
             </div>
           ))}
