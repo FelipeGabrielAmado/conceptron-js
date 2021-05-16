@@ -22,7 +22,7 @@ export default class CodeBlock extends Component {
     return (
       <div className="code-box">
         <p className="comment"> # Adicionando codificação do arquivo </p>
-        <p className="comment"># -*- coding: utf-8 -*-\n</p>
+        <p className="comment"># -*- coding: utf-8 -*-</p>
         <br />
         <p className="comment"> # Adicionando biblioteca PyTorch</p>
         <div className="line">
