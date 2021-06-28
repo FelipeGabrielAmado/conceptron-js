@@ -4,7 +4,7 @@ import NeuralNetwork from "../../components/NeuralNetwork";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCodeBranch } from "@fortawesome/free-solid-svg-icons";
+import { faCodeBranch, faBrain } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.css";
 
@@ -18,6 +18,10 @@ export default class AlterProject extends Component {
     nr_saida: "",
     nr_funcaoativacao: "",
     fl_softmax: "",
+  };
+
+  handlenr_camadas = (event) => {
+    this.setState({ nr_camadas: event.target.value });
   };
 
   handlenr_entrada = (event) => {
@@ -44,6 +48,7 @@ export default class AlterProject extends Component {
     event.preventDefault();
     const { id } = this.props.match.params;
     const {
+      nr_camadas,
       nr_entrada,
       nr_escondida,
       nr_saida,
@@ -53,6 +58,7 @@ export default class AlterProject extends Component {
 
     const response = api
       .put(`/projetos/${id}`, {
+        nr_camadas,
         nr_entrada,
         nr_escondida,
         nr_saida,
@@ -94,6 +100,20 @@ export default class AlterProject extends Component {
               </div>
               <div className="menu-item">
                 <div className="x-icon">
+                  <FontAwesomeIcon icon={faBrain} />
+                </div>
+                Camadas escondidas
+                <input
+                  className="menu-input"
+                  type="text"
+                  name="camadasescondidas"
+                  onChange={this.handlenr_camadas}
+                  placeholder={project.nr_camadas}
+                />
+              </div>
+
+              <div className="menu-item">
+                <div className="x-icon">
                   <FontAwesomeIcon icon={faCodeBranch} />
                 </div>
                 Neurônios escondidos
@@ -107,7 +127,7 @@ export default class AlterProject extends Component {
               </div>
 
               <div className="menu-item">
-                <div className="x-icon">X</div>
+                <div className="x-icon">Y</div>
                 Neurônios de saída
                 <input
                   className="menu-input"

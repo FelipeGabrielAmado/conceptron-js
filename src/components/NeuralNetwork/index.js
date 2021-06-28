@@ -8,34 +8,50 @@ export default class NeuralNetwork extends Component {
     while (root.firstChild) {
       root.removeChild(root.firstChild);
     }
-    
+
+    let entradas = {
+      units: this.props.networkData.nr_entrada,
+      stroke: "black",
+      fill: "lightblue",
+    };
+
+    let escondidas = {
+      units: this.props.networkData.nr_escondida,
+      stroke: "black",
+      fill: "lightgreen",
+    };
+
+    const nrCamadasEscondidas = this.props.networkData.nr_camadas;
+    let escondidasObject = [];
+
+    function funcaoEscondida(nrCamadasEscondidas, escondidas) {
+      for (var i = 0; i < nrCamadasEscondidas; i++) {
+        escondidasObject.push(escondidas);
+      }
+    }
+
+    funcaoEscondida(nrCamadasEscondidas, escondidas);
+    console.log(escondidasObject);
+    console.log(typeof escondidasObject);
+
+
+    let saidas = {
+      units: this.props.networkData.nr_saida,
+      stroke: "black",
+      fill: "lightyellow",
+    };
+
     new NNVisualizer(root, {
       width: 800,
       height: 500,
       network: {
         vertical: false,
+        radius: 30,
+        strokeWidth: 1,
         layers: [
-          {
-            units: this.props.networkData.nr_entrada,
-            strokeWidth: 1,
-            radius: 30,
-            stroke: "black",
-            fill: "lightblue",
-          },
-          {
-            units: this.props.networkData.nr_escondida,
-            strokeWidth: 1,
-            radius: 30,
-            stroke: "black",
-            fill: "lightgreen",
-          },
-          {
-            units: this.props.networkData.nr_saida,
-            strokeWidth: 1,
-            radius: 30,
-            stroke: "black",
-            fill: "lightyellow",
-          },
+          entradas,
+          ...escondidasObject,
+          saidas,
         ],
       },
     });
